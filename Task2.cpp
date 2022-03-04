@@ -12,7 +12,7 @@ void output_static(int array[][8])
 	}
 }
 
-void output_dynamic(int **array)
+void output_dynamic(int** array)
 {
 	for (int row = 0; row <= 7; row++)
 	{
@@ -20,7 +20,7 @@ void output_dynamic(int **array)
 		cout << endl;
 	}
 }
-void func_static(int (&array)[8][8], int row, int col)
+void func_static(int(&array)[8][8], int row, int col)
 {
 	for (int i = 0; i <= 8; i++)
 	{
@@ -34,7 +34,7 @@ void func_static(int (&array)[8][8], int row, int col)
 	}
 }
 
-void func_dynamic(int **array, int row, int col)
+void func_dynamic(int** array, int row, int col)
 {
 	for (int i = 0; i <= 7; i++)
 	{
@@ -48,74 +48,74 @@ void func_dynamic(int **array, int row, int col)
 	}
 }
 
-void input_coordinates(int &row, int &col)
+void input_coordinates(int& row, int& col)
 {
-	cout << "Ââåäèòå íîìåð ñòðîêè, íà êîòîðîì áóäåò ñòîÿòü ôåðçü: (1-8) " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ñ€Ð¾ÐºÐ¸, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð±ÑƒÐ´ÐµÑ‚ ÑÑ‚Ð¾ÑÑ‚ÑŒ Ñ„ÐµÑ€Ð·ÑŒ: (1-8) " << endl;
 	while (!(cin >> row)) {
-		cout << "Íåâåðíîå çíà÷åíèå" << endl;
+		cout << "ÐÐµÐ²ÐµÑ€Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ" << endl;
 	}
-	cout << "Ââåäèòå íîìåð ñòîëáöà, íà êîòîðîì áóäåò ñòîÿòü ôåðçü: (1-8) " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ð¾Ð»Ð±Ñ†Ð°, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ð±ÑƒÐ´ÐµÑ‚ ÑÑ‚Ð¾ÑÑ‚ÑŒ Ñ„ÐµÑ€Ð·ÑŒ: (1-8) " << endl;
 	while (!(cin >> col)) {
-		cout << "Íåâåðíîå çíà÷åíèå" << endl;
+		cout << "ÐÐµÐ²ÐµÑ€Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ" << endl;
 	}
 }
 
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	
+
 	int menu(0);
 	while (menu != 4)
 	{
-		cout << "Ââåäèòå âèä ìàññèâà: 1 - ñòàòè÷åñêèé, 2 - äèíàìè÷åñêèé, 3 - âåêòîð, 4 - çàâåðøåíèå ðàáîòû";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¸Ð´ Ð¼Ð°ÑÑÐ¸Ð²Ð°: 1 - ÑÑ‚Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹, 2 - Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹, 3 - Ð²ÐµÐºÑ‚Ð¾Ñ€, 4 - Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹";
 		cout << endl;
 		cin >> menu;
 		int queen_row, queen_col;
 		int arr_static[8][8] = { 0 };
 		switch (menu) {
-			case 1:
-				input_coordinates(queen_row, queen_col);
-				arr_static[--queen_row][--queen_col] = 8;
-				func_static(arr_static, queen_row, queen_col);
-				output_static(arr_static);
-				break;
-			case 2:
+		case 1:
+			input_coordinates(queen_row, queen_col);
+			arr_static[--queen_row][--queen_col] = 8;
+			func_static(arr_static, queen_row, queen_col);
+			output_static(arr_static);
+			break;
+		case 2:
+		{
+			int** arr_dynamic;
+			arr_dynamic = new int* [8];
+			for (int i = 0; i <= 7; i++)
 			{
-				int** arr_dynamic;
-				arr_dynamic = new int* [8];
-				for (int i = 0; i <= 7; i++)
-				{
-					arr_dynamic[i] = new int[8];
-				}
-				for (int i = 0; i <= 7; i++)
-				{
-					for (int j = 0; j <= 7; j++) arr_dynamic[i][j] = 0;
-				}
-				int queen_row, queen_col;
-				input_coordinates(queen_row, queen_col);
-				arr_dynamic[--queen_row][--queen_col] = 8;
-				func_dynamic(arr_dynamic, queen_row, queen_col);
-				output_dynamic(arr_dynamic);
-				delete[] arr_dynamic;
-				break;
+				arr_dynamic[i] = new int[8];
 			}
-			case 3:
+			for (int i = 0; i <= 7; i++)
 			{
-				cout << "Ââåäèòå ñòðîêó èç ñèìâîëîâ: ";
-				string line;
-				cin >> line;
-				char x = line[0];
-				int count = 0;
-				for (int i = 1; i < line.size(); i++) {
-					if (line[i] == x) count++;
-					x = line[i];
-					if (line[i] == '.') break;
-				}
-				cout << count << endl;
-				break;
+				for (int j = 0; j <= 7; j++) arr_dynamic[i][j] = 0;
 			}
-			case 4:
-				break;
+			int queen_row, queen_col;
+			input_coordinates(queen_row, queen_col);
+			arr_dynamic[--queen_row][--queen_col] = 8;
+			func_dynamic(arr_dynamic, queen_row, queen_col);
+			output_dynamic(arr_dynamic);
+			delete[] arr_dynamic;
+			break;
+		}
+		case 3:
+		{
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð¸Ð· ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð²: ";
+			string line;
+			cin >> line;
+			char x = line[0];
+			int count = 0;
+			for (int i = 1; i < line.size(); i++) {
+				if (line[i] == x) count++;
+				x = line[i];
+				if (line[i] == '.') break;
+			}
+			cout << count << endl;
+			break;
+		}
+		case 4:
+			break;
 		}
 	}
 	return 0;
