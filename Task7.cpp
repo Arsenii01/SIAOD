@@ -51,7 +51,11 @@ string fromInfixToPostfix(string infix)
     string postfix = "";
     char symbol;
     while (infix.size() != 0) {
-        symbol = infix[i];
+        symbol = infix[0];
+        if (symbol == ' ') {
+            infix.erase(0, 1);
+            continue;
+        };
         if (isOperator(symbol)) {
             if (stack.size() == 0 || stack.back() == '(') {
                 stack.push_back(symbol);
