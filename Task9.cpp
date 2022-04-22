@@ -71,7 +71,7 @@ void barrierSeach(LandArea* lands, int size, int query)
     }
 
 }
-
+//Медленнее печать в программе чем у остальных поисков из-за медленной сортировки
 int fibonacchiSort(LandArea* arr, int query, int size)
 {
     int fib1 = 0;
